@@ -12,4 +12,5 @@ export default function App(){const {t,lang,setLang}=useLang();const {scrollYPro
  <nav aria-label="Chapters" className="mono fixed start-6 top-1/2 z-40 hidden -translate-y-1/2 mix-blend-difference md:block"><ol className="space-y-4">{IDS.map((id,i)=><li key={id}><a href={`#${id}`} className={`flex items-center gap-3 transition-opacity ${act===id?'opacity-100':'opacity-40 hover:opacity-80'}`}><span className={`h-px bg-bone transition-all ${act===id?'w-8':'w-3'}`}/>{ROM[i]}</a></li>)}</ol></nav>
  <main id="top"><Hero/><Center/><Doctor/><Exams/><Book/><Contact/></main>
  <footer className="mono px-6 py-10 opacity-50 md:px-16">© {C.name} — {C.sub} — {C.city}</footer>
+ {import.meta.env.VITE_PROTOTYPE==='1'&&<p className="mono fixed bottom-3 start-3 z-[80] border border-bone/30 bg-ink/80 px-3 py-2 backdrop-blur" style={{fontSize:'.6rem'}}>Prototype — contenu à valider avec le Dr Benchekroun</p>}
  <Assistant/></div>}
