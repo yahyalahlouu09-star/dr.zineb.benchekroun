@@ -1,0 +1,32 @@
+import {createContext,useContext,useEffect,useState,ReactNode} from 'react';import type {Lang} from './config';
+const fr={nav:['Accueil','Visite','Docteur','Examens','Rendez-vous','Contact'],tag:'Radiologie diagnostique & interventionnelle · Fès',h1:'La précision de l’imagerie, la présence d’une équipe.',sub:'Un centre d’imagerie médicale à Fès, pensé pour votre confiance et votre confort.',cta1:'Demander un rendez-vous',cta2:'Découvrir le centre',
+why:['Précision','Technologie','Soin humain'],whyS:['Des examens réalisés sous la responsabilité de la radiologue.','Équipements GE visibles dans la visite du centre.','Un accueil attentif à chaque étape.'],
+tourT:'Découvrir le centre',docT:'Dr Zineb Benchekroun',docP:'[Biographie, diplômes, spécialités et expérience à fournir par le Dr Benchekroun. Aucune information n’est inventée.]',
+srvT:'Examens',soon:'À confirmer',srvP:'[Description, préparation, durée, rendez-vous requis : à valider par le centre.]',
+bookT:'Demande de rendez-vous',steps:['Patient','Examen','Votre cas','Souhaits','Confirmation'],name:'Nom complet',phone:'Téléphone',email:'E-mail (facultatif)',lang:'Langue de contact',exam:'Examen demandé',other:'Autre besoin',caseL:'Décrivez votre besoin',presc:'J’ai une ordonnance',prev:'J’ai déjà fait cet examen',file:'Joindre une ordonnance (envoi sécurisé via le serveur)',date:'Date souhaitée',time:'Heure souhaitée',comm:'Commentaires',consent:'J’accepte que ces informations soient transmises au centre pour traiter ma demande.',next:'Suivant',back:'Retour',send:'Envoyer la demande',req:'Champ requis',
+sentT:'Demande reçue',sentS:'Votre rendez-vous n’est PAS confirmé : le centre vous contactera pour confirmer.',demo:'Mode démo : aucune donnée n’a été envoyée (backend non connecté).',
+contT:'Localisation & contact',addr:'Adresse',hours:'Horaires',itin:'Itinéraire',msg:'Votre message',sendMsg:'Envoyer',
+aT:'Assistante d’accueil',aDemo:'DÉMO – réponses prédéfinies, pas d’IA réelle',aDisc:'Rôle administratif uniquement : pas de diagnostic ni de conseil médical.',use:'Utiliser dans le formulaire',summary:'Résumé',tapType:'Choisissez l’examen'};
+const ar:typeof fr={nav:['الرئيسية','الجولة','الطبيبة','الفحوصات','موعد','اتصال'],tag:'الأشعة التشخيصية والتدخلية · فاس',h1:'دقة التصوير، وحضور فريق يهتم بك.',sub:'مركز للتصوير الطبي بفاس، صُمم لراحتكم وثقتكم.',cta1:'اطلب موعدا',cta2:'اكتشف المركز',
+why:['الدقة','التقنية','العناية الإنسانية'],whyS:['فحوصات تتم تحت مسؤولية طبيبة الأشعة.','أجهزة GE ظاهرة في جولة المركز.','استقبال يرافقك في كل خطوة.'],
+tourT:'اكتشف المركز',docT:'الدكتورة زينب بنشقرون',docP:'[السيرة والشهادات والتخصصات والخبرة: ستُقدَّم من الدكتورة. لا شيء مختلق.]',
+srvT:'الفحوصات',soon:'قيد التأكيد',srvP:'[الوصف والتحضير والمدة والحاجة لموعد: يؤكدها المركز.]',
+bookT:'طلب موعد',steps:['المريض','الفحص','حالتك','التفضيلات','التأكيد'],name:'الاسم الكامل',phone:'الهاتف',email:'البريد الإلكتروني (اختياري)',lang:'لغة التواصل',exam:'الفحص المطلوب',other:'حاجة أخرى',caseL:'صف حاجتك',presc:'لدي وصفة طبية',prev:'أجريت هذا الفحص من قبل',file:'إرفاق وصفة (إرسال آمن عبر الخادم)',date:'التاريخ المفضل',time:'الوقت المفضل',comm:'ملاحظات',consent:'أوافق على إرسال هذه المعلومات إلى المركز لمعالجة طلبي.',next:'التالي',back:'رجوع',send:'إرسال الطلب',req:'حقل مطلوب',
+sentT:'تم استلام الطلب',sentS:'موعدك غير مؤكد بعد: سيتصل بك المركز للتأكيد.',demo:'وضع تجريبي: لم يتم إرسال أي بيانات (الخادم غير متصل).',
+contT:'الموقع والتواصل',addr:'العنوان',hours:'أوقات العمل',itin:'الاتجاهات',msg:'رسالتك',sendMsg:'إرسال',
+aT:'مساعدة الاستقبال',aDemo:'تجريبي – أجوبة مبرمجة وليست ذكاء اصطناعيا حقيقيا',aDisc:'دور إداري فقط: لا تشخيص ولا نصيحة طبية.',use:'استعمال في الاستمارة',summary:'ملخص',tapType:'اختر الفحص'};
+const en:typeof fr={nav:['Home','Tour','Doctor','Exams','Appointment','Contact'],tag:'Diagnostic & interventional radiology · Fez',h1:'The precision of imaging, the presence of a team.',sub:'A medical imaging center in Fez, designed around your trust and comfort.',cta1:'Request an appointment',cta2:'Discover the center',
+why:['Precision','Technology','Human care'],whyS:['Exams performed under the radiologist’s responsibility.','GE equipment visible in the center tour.','A caring welcome at every step.'],
+tourT:'Discover the center',docT:'Dr Zineb Benchekroun',docP:'[Biography, qualifications, specialties and experience to be provided by Dr Benchekroun. Nothing is invented.]',
+srvT:'Examinations',soon:'To confirm',srvP:'[Description, preparation, duration, appointment required: to be validated by the center.]',
+bookT:'Appointment request',steps:['Patient','Exam','Your case','Preferences','Confirm'],name:'Full name',phone:'Phone',email:'Email (optional)',lang:'Contact language',exam:'Requested exam',other:'Other need',caseL:'Describe your need',presc:'I have a prescription',prev:'I have had this exam before',file:'Attach a prescription (secure upload via server)',date:'Preferred date',time:'Preferred time',comm:'Comments',consent:'I agree that this information is sent to the center to process my request.',next:'Next',back:'Back',send:'Send request',req:'Required',
+sentT:'Request received',sentS:'Your appointment is NOT confirmed: the center will contact you to confirm.',demo:'Demo mode: no data was sent (backend not connected).',
+contT:'Location & contact',addr:'Address',hours:'Opening hours',itin:'Directions',msg:'Your message',sendMsg:'Send',
+aT:'Reception assistant',aDemo:'DEMO – predefined replies, not real AI',aDisc:'Administrative role only: no diagnosis or medical advice.',use:'Use in booking form',summary:'Summary',tapType:'Choose the exam'};
+export const dict={fr,ar,en};
+const Ctx=createContext<{lang:Lang;setLang:(l:Lang)=>void;t:typeof fr}>({lang:'fr',setLang:()=>{},t:fr});
+export const LangProvider=({children}:{children:ReactNode})=>{
+ const [lang,setLang]=useState<Lang>(()=>{try{return (localStorage.getItem('lang') as Lang)||'fr'}catch{return 'fr'}});
+ useEffect(()=>{document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';try{localStorage.setItem('lang',lang)}catch{}},[lang]);
+ return <Ctx.Provider value={{lang,setLang,t:dict[lang]}}>{children}</Ctx.Provider>};
+export const useLang=()=>useContext(Ctx);
